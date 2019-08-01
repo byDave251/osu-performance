@@ -1,6 +1,12 @@
 #include <pp/Common.h>
 #include <pp/performance/osu/OsuScore.h>
 
+//aim should be tested with 576f and 512f
+#define aimLengthDepenalizer 576f
+//speed should be tested with 576f, 512f and 256f
+//speed should be smaller number to penalize more
+#define speedLengthDepenalizer 576f
+
 PP_NAMESPACE_BEGIN
 
 OsuScore::OsuScore(
@@ -99,7 +105,7 @@ void OsuScore::computeAimValue(const Beatmap& beatmap)
 	_aimValue *= LengthBonus;
 
 	// Penalize misses exponentially. This mainly fixes tag4 maps and the likes until a per-hitobject solution is available
-	_aimValue *= pow(0.97f, _numMiss);
+	_aimValue *= pow(0.97f, _numMiss * (aimLengthDepenalizer / numTotalHits));
 
 	// Combo scaling
 	float maxCombo = beatmap.DifficultyAttribute(_mods, Beatmap::MaxCombo);
@@ -152,7 +158,7 @@ void OsuScore::computeSpeedValue(const Beatmap& beatmap)
 		(numTotalHits > 2000 ? log10(static_cast<f32>(numTotalHits) / 2000.0f) * 0.5f : 0.0f);
 
 	// Penalize misses exponentially. This mainly fixes tag4 maps and the likes until a per-hitobject solution is available
-	_speedValue *= pow(0.97f, _numMiss);
+	_speedValue *= pow(0.97f, _numMiss * (speedLengthDepenalizer / numTotalHits));
 
 	// Combo scaling
 	float maxCombo = beatmap.DifficultyAttribute(_mods, Beatmap::MaxCombo);
