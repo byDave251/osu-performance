@@ -1,11 +1,11 @@
 #include <pp/Common.h>
 #include <pp/performance/osu/OsuScore.h>
 
-//aim should be tested with 576f and 512f
-#define aimLengthDepenalizer 576f
-//speed should be tested with 576f, 512f and 256f
+//aim should be tested with 576 and 512
+#define aimLengthDepenalizer (float)576
+//speed should be tested with 576, 512 and 256
 //speed should be smaller number to penalize more
-#define speedLengthDepenalizer 576f
+#define speedLengthDepenalizer (float)576
 
 PP_NAMESPACE_BEGIN
 
