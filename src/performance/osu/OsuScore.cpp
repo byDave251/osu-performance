@@ -2,10 +2,10 @@
 #include <pp/performance/osu/OsuScore.h>
 
 //aim should be tested with 576 and 512
-#define aimLengthDepenalizer (float)576
+#define aimLengthDepenalizer 576.0f
 //speed should be tested with 576, 512 and 256
 //speed should be smaller number to penalize more
-#define speedLengthDepenalizer (float)576
+#define speedLengthDepenalizer 576.0f
 
 PP_NAMESPACE_BEGIN
 
